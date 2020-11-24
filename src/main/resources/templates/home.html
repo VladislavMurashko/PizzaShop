@@ -20,11 +20,11 @@
                         <p th:text="${el.name}" class="card-text  h5"></p>
                         <p th:text="${el.description}" class="product-card__description text-muted"></p>
                         <div class="d-flex justify-content-between align-items-center">
-                            <small th:text="${el.price} + ' руб.'" class="text-muted"></small>
-
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Изменить</button>
+                                <a th:href="'/pizza/' + ${el.id} + '/edit'" class="btn btn-info">Изменить</a>
                             </div>
+
+                            <small th:text="${el.price} + ' руб.'" class="text-muted"></small>
                         </div>
                     </div>
                 </div>

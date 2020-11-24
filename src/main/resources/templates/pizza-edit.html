@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Редактирование</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+
+<div class="container mt-5 mb-5">
+    <h2>Редактирование информации о продукте</h2><br>
+    <div th:each="el : ${pizza}">
+        <form method="post">
+            <input type="text" th:value="${el.name}" name="name" placeholder="Введите название продукта" class="form-control"><br>
+            <input type="text" th:value="${el.description}" name="description" placeholder="Введите описание продукта" class="form-control"><br>
+            <input type="number" step="0.01" th:value="${el.price}" name="price" placeholder="Введите стоимость продукта" class="form-control"><br>
+
+            <form th:action="'/pizza/' + ${el.id} + '/edit'" method="post">
+                <button type="submit" class="btn btn-success">Обновить</button>
+            </form>
+
+            <form th:action="'/pizza/' + ${el.id} + '/delete'" method="post" style="white-space: nowrap;">
+                <button class="btn btn-warning" type="submit" >Удалить</button>
+            </form>
+        </form>
+    </div>
+</div>
+<footer th:insert="blocks/footer :: footer"></footer>
+</body>
+</html>
