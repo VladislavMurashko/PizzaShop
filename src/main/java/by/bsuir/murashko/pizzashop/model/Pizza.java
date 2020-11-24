@@ -1,18 +1,23 @@
 package by.bsuir.murashko.pizzashop.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class Pizza {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private Integer order_id;
+    private String name;
     private double price;
-    private String type;
     private String description;
     private int quant;
     private String image_link;
+
+    public Pizza() {
+    }
 
     public Integer getId() {
         return id;
@@ -22,12 +27,12 @@ public class Pizza {
         this.id = id;
     }
 
-    public Integer getOrder_id() {
-        return order_id;
+    public String getName() {
+        return name;
     }
 
-    public void setOrder_id(Integer orderId) {
-        this.order_id = orderId;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public double getPrice() {
@@ -36,14 +41,6 @@ public class Pizza {
 
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public String getDescription() {
@@ -66,7 +63,7 @@ public class Pizza {
         return image_link;
     }
 
-    public void setImage_link(String imageLink) {
-        this.image_link = imageLink;
+    public void setImage_link(String image_link) {
+        this.image_link = image_link;
     }
 }

@@ -1,9 +1,0 @@
-{
-  "compilerOptions": {
-    "target": "ES2017",
-    "removeComments": true,
-    "outDir": "js",
-    "sourceMap": true,
-    "outFile": "main.js"
-  }
-}
