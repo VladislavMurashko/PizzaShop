@@ -33,6 +33,11 @@ public class MainController {
         return "home";
     }
 
+    @GetMapping(value = "/pizza/add")
+    public String addNewPizza(Model model) {
+        return "pizza-add";
+    }
+
     @GetMapping(value = "/pizza/{id}/edit")
     public String editPizzaInfo(@PathVariable int id, Model model) {
         if (!pizzaRepository.existsById(id)) {
@@ -48,12 +53,43 @@ public class MainController {
     }
 
     @PostMapping(value = "/pizza/{id}/edit")
-    public String updatePizzaInfo(@PathVariable int id, @RequestParam String name, @RequestParam String description, @RequestParam double price, Model model) {
+    public String updatePizzaInfo(@PathVariable int id,
+                                  @RequestParam String name,
+                                  @RequestParam int quant,
+                                  @RequestParam String description,
+                                  @RequestParam double price,
+                                  @RequestParam String image_link,
+                                  Model model) {
+
         try {
             Pizza pizza = pizzaRepository.findById(id).orElseThrow();
             pizza.setName(name);
+            pizza.setQuant(quant);
             pizza.setDescription(description);
             pizza.setPrice(price);
+            pizza.setImage_link(image_link);
+            pizzaRepository.save(pizza);
+        } catch (NoSuchElementException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return "redirect:/";
+    }
+
+    @PostMapping(value = "/pizza/add")
+    public String addPizza(@RequestParam String name,
+                           @RequestParam int quant,
+                           @RequestParam String description,
+                           @RequestParam double price,
+                           @RequestParam String image_link,
+                           Model model) {
+        try {
+            Pizza pizza = new Pizza();
+            pizza.setName(name);
+            pizza.setQuant(quant);
+            pizza.setDescription(description);
+            pizza.setPrice(price);
+            pizza.setImage_link(image_link);
             pizzaRepository.save(pizza);
         } catch (NoSuchElementException ex) {
             System.out.println(ex.getMessage());

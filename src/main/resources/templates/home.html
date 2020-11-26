@@ -15,7 +15,7 @@
                 <div class="card mb-4 box-shadow">
                     <img class="card-img-top px-2 py-1"
                          alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;"
-                         th:src="@{'/../' + ${el.image_link}}">
+                         th:src="@{'/../images/' + ${el.image_link}}">
                     <div class="card-body">
                         <p th:text="${el.name}" class="card-text  h5"></p>
                         <p th:text="${el.description}" class="product-card__description text-muted"></p>
